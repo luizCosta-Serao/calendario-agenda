@@ -1,3 +1,23 @@
+<?php
+  //$mes = isset($_GET['mes']) ? (int)$_GET['mes'] : date('m', time());
+  //$ano = isset($_GET['ano']) ? (int)$_GET['ano'] : date('Y', time());
+
+  $mes = date('m', time());
+  $ano = date('Y', time());
+
+  if ($mes > 12) {
+    $mes = 12;
+  } else if ($mes < 1) {
+    $mes = 1;
+  }
+
+  $numeroDias = cal_days_in_month(CAL_GREGORIAN, $mes, $ano);
+  $diaInicialDoMes = date('N', strtotime("$ano-$mes-01"));
+
+  $diaDeHoje = date('d', time());
+  $diaDeHoje = "$ano-$mes-$diaDeHoje";
+  echo $diaDeHoje;
+?>
 <section class="calendario">
   <h1 class="title">Calendário e Agenda</h1>
   <table class="calendario-table">
@@ -12,16 +32,44 @@
     </tr>
     <tr>
       <?php
-        for ($i=1; $i <= 6; $i++) { 
+        $n = 1;
+        $z = 0;
+        $numeroDias+=$diaInicialDoMes;
+        while($n <= $numeroDias) {
+          if ($diaInicialDoMes === 7 && $z !== $diaInicialDoMes) {
+            $z = 7;
+            $n = 8;
+          }
+          if ($n % 7 === 1) {
+            echo '<tr>';
+          }
+          if ($z >= $diaInicialDoMes) {
+            $dia = $n - $diaInicialDoMes;
+            if ($dia < 10) {
+              $dia = str_pad($dia, strlen($dia)+1, '0', STR_PAD_LEFT);
+            }
+            $atual = "$ano-$mes-$dia";
+            if ($atual !== $diaDeHoje) {
+              echo '<td>'.$dia.'</td>';
+            } else {
+              echo '<td class="day-selected">'.$dia.'</td>';
+
+            }
+          } else {
+            echo '<td></td>';
+            $z++;
+          }
+          if ($n % 7 === 0) {
+            echo '</tr>';
+          }
+          $n++;
+        }
       ?>
-        <td><?php echo $i; ?></td>
-      <?php } ?>
-      <td class="day-selected">7</td>
     </tr>
   </table>
 
   <form action="" method="post">
-    <h2 class="title">Adicionar tarefa para 19/09/2024</h2>
+    <h2 class="title">Adicionar tarefa para <?php echo date('d/m/Y', time()); ?></h2>
     <input type="text" name="tarefa">
     <input type="hidden" name="data" value="2024-09-01">
     <input type="submit" name="acao" value="Cadastrar">
