@@ -117,3 +117,91 @@ body {
   top: 100px;
   padding: 40px;
 }
+
+.title {
+  font-weight: 400;
+  color: #222;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.calendario-table {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 10px;
+  margin-top: 32px;
+  color: #222;
+}
+
+.calendario-table tr {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendario-table td {
+  border: 1px solid #222;
+  text-align: center;
+  cursor: pointer;
+  padding: 16px 32px;
+  font-size: 20px;
+}
+
+.day-selected {
+  background-color: #222;
+  color: #fff;
+  font-weight: 700;
+}
+
+.colunas-table td {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.calendario {
+  max-width: calc(100% - 300px);
+}
+
+.calendario form {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 10px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.calendario form input[type="text"] {
+  height: 40px;
+  display: block;
+  width: 400px;
+  margin-bottom: 16px;
+  border: 1px solid #222;
+  border-radius: 10px;
+  color: #222;
+  padding-left: 8px;
+}
+
+.calendario form input[type="submit"] {
+  padding: 16px 32px;
+  background-color: #3377ff;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+}
+
+.box-tarefas {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 10px;
+}
+
+.box-tarefas .box-tarefa-single {
+  background-color: #ccc;
+  color: #222;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+}

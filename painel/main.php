@@ -19,6 +19,9 @@
     <a href="<?php echo INCLUDE_PATH_PAINEL; ?>?loggout">
       Sair
     </a>
+    <a href="<?php echo INCLUDE_PATH_PAINEL; ?>calendario">
+      Calendário
+    </a>
   </header>
   <section class="container">
     <aside class="sidebar">
