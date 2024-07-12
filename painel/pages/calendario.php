@@ -16,10 +16,26 @@
 
   $diaDeHoje = date('d', time());
   $diaDeHoje = "$ano-$mes-$diaDeHoje";
-  echo $diaDeHoje;
+  
+  $meses = array(
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  );
+
+  $nomeMes = $meses[(int)$mes - 1];
 ?>
 <section class="calendario">
-  <h1 class="title">Calendário e Agenda</h1>
+  <h1 class="title">Calendário e Agenda | <b><?php echo $nomeMes; ?> / <?php echo $ano ?></b></h1>
   <table class="calendario-table">
     <tr class="colunas-table">
       <td>Domingo</td>
