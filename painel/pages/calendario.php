@@ -94,7 +94,7 @@
   <div class="box-tarefas">
     <h2 class="title">Tarefas de 19/09/2024</h2>
     <?php
-      $pegarTarefas = MySql::connect()->prepare("SELECT * FROM `agenda` WHERE data = '$diaDeHoje'");
+      $pegarTarefas = MySql::connect()->prepare("SELECT * FROM `agenda` WHERE data = '$diaDeHoje' ORDER BY id DESC");
       $pegarTarefas->execute();
       $pegarTarefas = $pegarTarefas->fetchAll(PDO::FETCH_ASSOC);
       foreach ($pegarTarefas as $key => $value) {

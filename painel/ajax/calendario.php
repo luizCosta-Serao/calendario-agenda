@@ -8,7 +8,7 @@
 
   if (isset($_POST['type']) && $_POST['type'] === 'exibir') {
     $data = $_POST['data'];
-    $tarefasParaDia = MySql::connect()->prepare("SELECT * FROM `agenda` WHERE data = ?");
+    $tarefasParaDia = MySql::connect()->prepare("SELECT * FROM `agenda` WHERE data = ? ORDER BY id DESC");
     $tarefasParaDia->execute(array($data));
     if ($tarefasParaDia->rowCount() >= 1) {
       $tarefasParaDia = $tarefasParaDia->fetchAll();
@@ -24,7 +24,7 @@
     $inserirTarefa = MySql::connect()->prepare("INSERT INTO `agenda` VALUES (null, ?, ?)");
     $inserirTarefa->execute(array($tarefa, $data));
 
-    $tarefasParaDia = MySql::connect()->prepare("SELECT * FROM `agenda` WHERE data = ?");
+    $tarefasParaDia = MySql::connect()->prepare("SELECT * FROM `agenda` WHERE data = ? ORDER BY id DESC");
     $tarefasParaDia->execute(array($data));
     if ($tarefasParaDia->rowCount() >= 1) {
       $tarefasParaDia = $tarefasParaDia->fetchAll();
