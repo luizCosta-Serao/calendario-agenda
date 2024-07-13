@@ -84,7 +84,7 @@
     </tr>
   </table>
 
-  <form action="" method="post">
+  <form id="inserirTarefa" action="" method="post">
     <h2 class="title">Adicionar tarefa para <?php echo date('d/m/Y', time()); ?></h2>
     <input type="text" name="tarefa">
     <input type="hidden" name="data" value="2024-09-01">

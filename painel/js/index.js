@@ -9,7 +9,10 @@ $(function() {
     aplicarEventos($(this).attr('dia'), 'exibir');
   })
 
-
+  $('#inserirTarefa').submit(function(e) {
+    e.preventDefault();
+    aplicarEventos($('.day-selected').attr('dia'), 'inserir');
+  })
 
   function trocarDatas(notFormatado, formatado) {
     $('input[type="hidden"]').attr('value', notFormatado);
@@ -18,12 +21,16 @@ $(function() {
   }
 
   function aplicarEventos(data, type) {
-    
+    let tarefa = ''
+    if (type === 'inserir') {
+      tarefa = $('#inserirTarefa input[name="tarefa"]').val();
+    }
     $('.box-tarefa-single').remove();
     $.ajax({
       url: 'http://localhost/sistema-calendario-e-agenda/painel/ajax/calendario.php',
       method: 'post',
       data: {
+        tarefa,
         data,
         type,
       },
