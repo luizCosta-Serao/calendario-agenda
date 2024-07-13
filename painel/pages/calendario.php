@@ -66,9 +66,9 @@
             }
             $atual = "$ano-$mes-$dia";
             if ($atual !== $diaDeHoje) {
-              echo '<td>'.$dia.'</td>';
+              echo '<td dia="'.$atual.'">'.$dia.'</td>';
             } else {
-              echo '<td class="day-selected">'.$dia.'</td>';
+              echo '<td dia="'.$atual.'" class="day-selected">'.$dia.'</td>';
 
             }
           } else {
@@ -84,7 +84,7 @@
     </tr>
   </table>
 
-  <form action="" method="post">
+  <form id="inserirTarefa" action="" method="post">
     <h2 class="title">Adicionar tarefa para <?php echo date('d/m/Y', time()); ?></h2>
     <input type="text" name="tarefa">
     <input type="hidden" name="data" value="2024-09-01">
@@ -94,10 +94,13 @@
   <div class="box-tarefas">
     <h2 class="title">Tarefas de 19/09/2024</h2>
     <?php
-      for ($i=0; $i < 6; $i++) { 
+      $pegarTarefas = MySql::connect()->prepare("SELECT * FROM `agenda` WHERE data = '$diaDeHoje' ORDER BY id DESC");
+      $pegarTarefas->execute();
+      $pegarTarefas = $pegarTarefas->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($pegarTarefas as $key => $value) {
     ?>
       <div class="box-tarefa-single">
-        <h3>Ir ao médico</h3>
+        <h3><?php echo $value['tarefa']; ?></h3>
       </div>
     <?php } ?>
   </div>
